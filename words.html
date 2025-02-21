@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Money Masters</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="try.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+function calculateBudget() {
+  let annualIncome = document.getElementById("income").value;
+  if (!annualIncome || annualIncome <= 0) {
+    alert("Please enter a valid annual income.");
+    return;
+  }
+  let monthlyIncome = annualIncome / 12;
+  document.getElementById("monthly income").innerText = "$" + (monthlyIncome).toFixed(2);
+  document.getElementById("needs").innerText = "$" + (monthlyIncome * 0.5).toFixed(2);
+  document.getElementById("wants").innerText = "$" + (monthlyIncome * 0.3).toFixed(2);
+  document.getElementById("savings").innerText = "$" + (monthlyIncome * 0.2).toFixed(2);
+}
+
+function calculateInvestment() {
+  let amount = parseFloat(document.getElementById("investmentAmount").value);
+  if (!amount || amount <= 0) {
+    alert("Please enter a valid investment amount.");
+    return;å
+  }
+  
+  let riskReturns = {
+    low: 0.03,
+    moderate: 0.07,
+    high: 0.15
+  };
+
+  let datasets = [];
+  Object.keys(riskReturns).forEach((risk, index) => {
+    let values = [amount];
+    for (let i = 1; i <= 30; i++) {
+      values.push(values[i - 1] * (1 + riskReturns[risk]));
+    }
+    datasets.push({
+      label: risk.charAt(0).toUpperCase() + risk.slice(1) + " Risk",
+      data: values,
+      borderColor: ["#6a0dad", "#FFD700", "#000000"][index],
+      fill: false
+    });
+  });
+
+  let ctx = document.getElementById("investmentChart").getContext("2d");
+  if (window.investmentChartInstance) {
+    window.investmentChartInstance.destroy();
+  }
+  window.investmentChartInstance = new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: Array.from({ length: 31 }, (_, i) => `Year ${i}`),
+      datasets: datasets
+    }
+  });
+}
+</script>
+</head>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-card">
+    <a href="home.html" class="w3-bar-item w3-button">Home</a>
+    <a href="words.html" class="w3-bar-item w3-button">Words</a>
+    <a href="calculator.html" class="w3-bar-item w3-button">Budget</a>
+    <a href="investment.html" class="w3-bar-item w3-button">Investment</a>
+    <a href="https://buildyourstax.com/" class="w3-bar-item w3-button" target="_blank">Games</a>
+  </div>
+</div>
+
+<!-- Words Page -->
+<div class="words-section w3-container" id="words">
+  <h2 class="w3-center">Financial Terms</h2>
+  <ul>
+    <li><b>Asset:</b> An economic benefit that is controlled by a person or organization.</li>
+    <li><b>Book value:</b> The original cost of an asset minus any depreciation.</li>
+    <li><b>Capital:</b> Assets that can be used to produce goods or services.</li>
+    <li><b>Credit:</b> An agreement to pay for a good or service at a later date.</li>
+    <li><b>Credit rating:</b> A ranking of a person or business's ability to repay debt.</li>
+    <li><b>Current asset:</b> An asset that can be converted to cash within one year.</li>
+    <li><b>Current liability:</b> A liability that is due within one year.</li>
+    <li><b>Liability:</b> A legal obligation to repay a debt.</li>
+  </ul>
+</div>
+
+
+
+</body>
+</html>

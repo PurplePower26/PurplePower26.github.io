@@ -1,0 +1,37 @@
+body,h1,h2,h3,h4,h5,h6 {font-family: "Lato", sans-serif;}
+body, html {
+  height: 100%;
+  color: #000000;
+  background-color: #4B0082;
+  line-height: 1.8;
+}
+
+.w3-top {
+  background-color: #4B0082;
+}
+.w3-bar .w3-button {
+  color: #FFFFFF;
+}
+.w3-bar .w3-button:hover {
+  background-color: #800080;
+}
+
+.bgimg-1 {
+  background-color: #4B0082;
+  color: #FFFFFF;
+  text-align: center;
+  padding: 100px 0;
+}
+
+.words-section {
+  padding: 64px;
+  background-color: #D8BFD8;
+  color: #000000;
+}
+
+.calculator-section {
+  padding: 64px;
+  background-color: #E6E6FA;
+  color: #000000;
+  text-align: center;
+}
